@@ -514,28 +514,28 @@ func (m nodeManager) updateHTMLEventHandlers(ctx Context, v HTML, newEvents even
 }
 
 func (m nodeManager) updateComponent(ctx Context, v, new Composer) (UI, error) {
-	value := reflect.Indirect(reflect.ValueOf(v))
-	newValue := reflect.Indirect(reflect.ValueOf(new))
-
-	var modifiedFields bool
-	for i := 0; i < value.NumField(); i++ {
-		field := value.Field(i)
-		newField := newValue.Field(i)
-		if !field.CanSet() {
-			continue
-		}
-		if _, compoStruct := field.Interface().(Compo); compoStruct {
-			continue
-		}
-		if !canUpdateValue(field, newField) {
-			continue
-		}
-		field.Set(newField)
-		modifiedFields = true
-	}
-	if !modifiedFields {
-		return v, nil
-	}
+	//value := reflect.Indirect(reflect.ValueOf(v))
+	//newValue := reflect.Indirect(reflect.ValueOf(new))
+	//
+	//var modifiedFields bool
+	//for i := 0; i < value.NumField(); i++ {
+	//	field := value.Field(i)
+	//	newField := newValue.Field(i)
+	//	if !field.CanSet() {
+	//		continue
+	//	}
+	//	if _, compoStruct := field.Interface().(Compo); compoStruct {
+	//		continue
+	//	}
+	//	if !canUpdateValue(field, newField) {
+	//		continue
+	//	}
+	//	field.Set(newField)
+	//	modifiedFields = true
+	//}
+	//if !modifiedFields {
+	//	return v, nil
+	//}
 
 	if updater, ok := v.(Updater); ok {
 		updater.OnUpdate(ctx)
